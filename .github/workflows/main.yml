@@ -65,7 +65,7 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Repository:* \n ${{ github.repositoryUrl | replace('git://', 'https://') | replace('.git', '') }}"
+                      "text": "*Repository:* \n ${{ github.repositoryUrl.replace('git:', 'https:') }}"
                     }
                   ]
                 },
