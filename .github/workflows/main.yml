@@ -32,7 +32,7 @@ jobs:
 
         with:
           status: ${{ job.status }}
-          text: """
+          text: |
             {
               "blocks": [
                 {
@@ -96,10 +96,9 @@ jobs:
                 }
               ]
             }
-          """
-  fields: repo,message,author,action,commit,url
+
+        fields: repo,message,author,action,commit,url
 
 		  
-          
-          fields: repo,message,author,action,commit,url
+
 
