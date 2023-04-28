@@ -27,9 +27,10 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: general
-          SLACK_TITLE: DIPSA 56 CI/CD Submission
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE:  {
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: |
+            {
               "blocks": [
                 {
                   "type": "header",
@@ -92,3 +93,6 @@ jobs:
                 }
               ]
             }
+          SLACK_TITLE: DIPSA 56 CI/CD Submission
+          SLACK_USERNAME: rtCamp
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
