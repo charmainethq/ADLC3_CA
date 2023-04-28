@@ -70,30 +70,32 @@ jobs:
                   ]
                 },
                 {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Deployment URL:* \n ${{ secrets.RAILWAY_URL }}"
-                    }
-                  ]
-                },
-                {
-                  "type": "actions",
-                  "elements": [
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "Go",
-                        "emoji": true
-                      },
-                      "url": "${{ secrets.RAILWAY_URL }}"
-                    }
-                  ]
+                    "type": "section",
+                    "fields": [
+                        {
+                            "type": "mrkdwn",
+                            "text": "*Deployment URL:* \n${{ secrets.RAILWAY_URL }}"
+                        },
+                        {
+                            "type": "actions",
+                            "elements": [
+                                {
+                                    "type": "button",
+                                    "text": {
+                                        "type": "plain_text",
+                                        "text": "Go",
+                                        "emoji": true,
+                                        "min_width": "50px"
+                                    },
+                                    "url": "${{ secrets.RAILWAY_URL }}"
+                                }
+                            ]
+                        }
+                    ]
                 }
+
               ]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_TEST}}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_MINE}}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
