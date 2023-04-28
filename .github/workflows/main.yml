@@ -1,101 +1,72 @@
-name: Release Pipeline
-on:
-  push:
-    #branches:
-    #  - 'release/v[0-9]+.[0-9]+'
-
-env:
-  RAILWAY_URL: truthful-morning-production.up.railway.app
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: '1.16.x'
-      
-      - name: Build
-        run: go build -o dov-bear .
-
-
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: general
-          SLACK_TITLE: DIPSA 56 CI/CD Submission
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-
-        with:
-          status: ${{ job.status }}
-          text: |
-            {
-              "blocks": [
-                {
-                  "type": "header",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "Application Provisioned",
-                    "emoji": true
-                  }
-                },
-                {
-                  "type": "divider"
-                },
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Name:* Charmaine Tan"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Matriculation Number:* E1112932"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Email:* e1112932@u.nus.edu"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Repository:* ${{ github.repository }}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Deployment URL:* ${{ secrets.RAILWAY_URL }}"
-                    }
-                  ]
-                },
-                {
-                  "type": "actions",
-                  "elements": [
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "Go",
-                        "emoji": true
-                      },
-                      "url": "https://my-app.railway.app"
-                    },
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "View on GitHub",
-                        "emoji": true
-                      },
-                      "url": "${{ secrets.RAILWAY_URL }}"
-                    }
-                  ]
-                }
-              ]
+- name: Slack Notification
+  uses: rtCamp/action-slack-notify@v2
+  env:
+    SLACK_CHANNEL: general
+    SLACK_TITLE: DIPSA 56 CI/CD Submission
+    SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  with:
+    status: ${{ job.status }}
+    text: |
+      {
+        "blocks": [
+          {
+            "type": "header",
+            "text": {
+              "type": "plain_text",
+              "text": "Application Provisioned",
+              "emoji": true
             }
-		  
-
-
+          },
+          {
+            "type": "divider"
+          },
+          {
+            "type": "section",
+            "fields": [
+              {
+                "type": "mrkdwn",
+                "text": "*Name:* Charmaine Tan"
+              },
+              {
+                "type": "mrkdwn",
+                "text": "*Matriculation Number:* E1112932"
+              },
+              {
+                "type": "mrkdwn",
+                "text": "*Email:* e1112932@u.nus.edu"
+              },
+              {
+                "type": "mrkdwn",
+                "text": "*Repository:* ${{ github.repository }}"
+              },
+              {
+                "type": "mrkdwn",
+                "text": "*Deployment URL:* ${{ secrets.RAILWAY_URL }}"
+              }
+            ]
+          },
+          {
+            "type": "actions",
+            "elements": [
+              {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Go",
+                  "emoji": true
+                },
+                "url": "https://my-app.railway.app"
+              },
+              {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "View on GitHub",
+                  "emoji": true
+                },
+                "url": "${{ secrets.RAILWAY_URL }}"
+              }
+            ]
+          }
+        ]
+      }
