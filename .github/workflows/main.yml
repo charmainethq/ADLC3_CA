@@ -70,30 +70,24 @@ jobs:
                   ]
                 },
                 {
-                    "type": "section",
-                    "fields": [
-                        {
-                            "type": "mrkdwn",
-                            "text": "*Deployment URL:* \n${{ secrets.RAILWAY_URL }}"
-                        },
-                        {
-                            "type": "actions",
-                            "elements": [
-                                {
-                                    "type": "button",
-                                    "text": {
-                                        "type": "plain_text",
-                                        "text": "Go",
-                                        "emoji": true,
-                                        "min_width": "50px"
-                                    },
-                                    "url": "${{ secrets.RAILWAY_URL }}"
-                                }
-                            ]
-                        }
-                    ]
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Deployment URL:* \n ${{ secrets.RAILWAY_URL }}",
+                      "verbatim": true
+                    }
+                  ],
+                  "accessory": {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Go",
+                      "emoji": true
+                    },
+                    "url": "https://www.svix.com/resources/guides/how-to-get-slack-webhook-url/"
+                  }
                 }
-
               ]
             }
         env:
