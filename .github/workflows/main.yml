@@ -19,6 +19,10 @@ jobs:
       
       - name: Build
         run: go build -o dov-bear .
+        
+      - name: Debug Secret
+        run: echo ${{ secrets.RAILWAY_URL }}
+
 
       - name: Build notification
         uses: edge/simple-slack-notify@master
