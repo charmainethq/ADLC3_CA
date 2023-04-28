@@ -1,14 +1,15 @@
 name: Release Pipeline
 on:
   push:
-    #branches:
-    #  - 'release/v[0-9]+.[0-9]+'
-    #line
+    branches:
+      - 'release/v[0-9]+.[0-9]+' #asldhasd
+
 
 jobs:
   build:
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, '#NORUN') }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
