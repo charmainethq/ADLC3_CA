@@ -2,7 +2,7 @@ name: Release Pipeline
 on:
   push:
     branches:
-      - 'release/v[0-9]+.[0-9]+' #asldhasd
+      #- 'release/v[0-9]+.[0-9]+'
 
 
 jobs:
