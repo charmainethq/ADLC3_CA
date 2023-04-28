@@ -35,8 +35,5 @@ jobs:
           failure_text: '${env.GITHUB_WORKFLOW} (${env.GITHUB_RUN_NUMBER}) build failed'
           cancelled_text: '${env.GITHUB_WORKFLOW} (${env.GITHUB_RUN_NUMBER}) build was cancelled'
           fields: |
-            [{ "title": "Name", "value": "Charmaine Tan Hui Qi", "short": true },
-             { "title": "Repository", "value": "${env.GITHUB_REPOSITORY}", "short": true },
-             { "title": "Matriculation Number:", "value": "E1112932", "short": true }
-             { "title": "Deployment URL", "value": "${{ secrets.RAILWAY_URL }}", "short": true }
-             ]
+            [{ "title": "Repository", "value": "${env.GITHUB_REPOSITORY}", "short": true },
+             { "title": "Deployment URL", "value": "${{ secrets.RAILWAY_URL }}"", "short": true }]
