@@ -1,8 +1,8 @@
 name: Release Pipeline
 on:
   push:
-    branches:
-      - 'release/v[0-9]+.[0-9]+'
+    #branches:
+    #  - 'release/v[0-9]+.[0-9]+'
 
 env:
   RAILWAY_URL: truthful-morning-production.up.railway.app
