@@ -96,9 +96,6 @@ jobs:
                 }
               ]
             }
-
-        fields: repo,message,author,action,commit,url
-
 		  
 
 
