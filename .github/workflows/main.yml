@@ -22,7 +22,6 @@ jobs:
       - name: Build
         run: go build -o dov-bear .
 
-
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
@@ -30,6 +29,7 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_MESSAGE: |
             {
+              "text": "Hello, world!",
               "blocks": [
                 {
                   "type": "section",
