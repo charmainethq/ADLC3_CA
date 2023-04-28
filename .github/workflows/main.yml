@@ -23,8 +23,11 @@ jobs:
         run: go build -o dov-bear .
 
       - name: Build notification
-        if: always()
         uses: edge/simple-slack-notify@master
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
+
         with:
           channel: '#builds'
           status: ${{ job.status }}
