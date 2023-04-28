@@ -57,11 +57,11 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Repository:* https://github.com/charmainethq/ADLC3_CA.git"
+                      "text": "*Repository:* ${{ github.repository }}"
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Deployment URL:* https://github.com/charmainethq/ADLC3_CA.git"
+                      "text": "*Deployment URL:* ${{ secrets.RAILWAY_URL }}"
                     }
                   ]
                 },
@@ -75,16 +75,7 @@ jobs:
                         "text": "Go",
                         "emoji": true
                       },
-                      "url": "https://my-app.railway.app"
-                    },
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "View on GitHub",
-                        "emoji": true
-                      },
-                      "url": "https://github.com/johndoe/my-repo"
+                      "url": "${{ secrets.RAILWAY_URL }}"
                     }
                   ]
                 }
