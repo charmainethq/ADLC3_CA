@@ -1,7 +1,7 @@
 name: Release Pipeline
 on:
   push:
-    branches:
+    #branches:
     #  - 'release/v[0-9]+.[0-9]+'
     if: "!startsWith(github.event.head_commit.message, '#NORUN')"
 
@@ -20,8 +20,6 @@ jobs:
       
       - name: Build
         run: go build -o dov-bear .
-
-
 
       - name: Install Railway
         run: npm i -g @railway/cli
@@ -71,18 +69,13 @@ jobs:
                   ]
                 },
                 {
-                    "type": "section",
-                    "fields": [
-                        {
-                            "type": "mrkdwn",
-                            "text": "*Deployment URL:* \n ${{ secrets.RAILWAY_URL }}"
-                        }
-                    ],
-                    "accessory": {
-                        "type": "image",
-                        "image_url": "https://api.slack.com/img/blocks/bkb_template_images/placeholder.png",
-                        "alt_text": "Blank"
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Deployment URL:* \n ${{ secrets.RAILWAY_URL }}"
                     }
+                  ]
                 },
                 {
                   "type": "actions",
