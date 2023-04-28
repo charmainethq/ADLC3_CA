@@ -29,10 +29,7 @@ jobs:
           SLACK_CHANNEL: general
           SLACK_TITLE: DIPSA 56 CI/CD Submission
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        with:
-          status: ${{ job.status }}
-          text: |
-            {
+          SLACK_MESSAGE:  {
               "blocks": [
                 {
                   "type": "header",
