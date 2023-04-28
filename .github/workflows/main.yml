@@ -3,6 +3,7 @@ on:
   push:
     #branches:
     #  - 'release/v[0-9]+.[0-9]+'
+    #if: "!startsWith(github.event.head_commit.message, '#NORUN')"
 
 
 jobs:
@@ -20,6 +21,10 @@ jobs:
       - name: Build
         run: go build -o dov-bear .
 
+      - name: Deploy
+        run: railway up
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
       - name: Send custom JSON data to Slack workflow
         id: slack
@@ -49,19 +54,24 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Matriculation Number:* E1112932"
-                    },
-                    {
-                      "type": "mrkdwn",
                       "text": "*Email:* e1112932@u.nus.edu"
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Repository:* ${{ github.repository }}"
+                      "text": "*Matriculation Number:* E1112932"
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Deployment URL:* ${{ secrets.RAILWAY_URL }}"
+                      "text": "*Repository:* \n ${{ github.repository }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Deployment URL:* \n ${{ secrets.RAILWAY_URL }}"
                     }
                   ]
                 },
@@ -81,7 +91,6 @@ jobs:
                 }
               ]
             }
-
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
