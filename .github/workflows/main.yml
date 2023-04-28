@@ -25,19 +25,13 @@ jobs:
         run: echo ${{ secrets.RAILWAY_URL }}
 
 
-      - name: Build notification
-        uses: edge/simple-slack-notify@master
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-          RAILWAY_URL: ${{ secrets.RAILWAY_URL}}
-        if: always()
-
+      - name: Notify Slack Fail
+        if: failure()
+        uses: slackapi/slack-github-action@v1.21.0
         with:
-          channel: '#builds'
-          status: ${{ job.status }}
-          success_text: '${env.GITHUB_WORKFLOW} (${env.GITHUB_RUN_NUMBER}) build completed successfully'
-          failure_text: '${env.GITHUB_WORKFLOW} (${env.GITHUB_RUN_NUMBER}) build failed'
-          cancelled_text: '${env.GITHUB_WORKFLOW} (${env.GITHUB_RUN_NUMBER}) build was cancelled'
-          fields: |
-            [{ "title": "Repository", "value": "${env.GITHUB_REPOSITORY}", "short": true },
-             { "title": "Deployment URL", "value": "${env.RAILWAY_URL}"", "short": true }]
+          channel-id: "general"
+          slack-message: |
+            GitHub build result: ${{ job.status }}
+            ${{ github.event.pull_request.html_url || github.event.head_commit.url }}
+            <@${{ secrets.SLACK_WEBHOOK}}>
+        env:
