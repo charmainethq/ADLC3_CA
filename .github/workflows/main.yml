@@ -21,13 +21,76 @@ jobs:
         run: go build -o dov-bear .
 
 
-
-      - name: Notify Slack Fail
-        if: failure()
-        uses: slackapi/slack-github-action@v1.21.0
+      - name: Send custom JSON data to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.23.0
         with:
-          channel-id: "general"
-          slack-message: |
-            GitHub build result: ${{ job.status }}
-            ${{ github.event.pull_request.html_url || github.event.head_commit.url }}
-            <@${{ secrets.SLACK_WEBHOOK}}>
+          # For posting a rich message using Block Kit
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Application Provisioned",
+                    "emoji": true
+                  }
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Name:* Charmaine Tan"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Matriculation Number:* E1112932"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Email:* e1112932@u.nus.edu"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Repository:* https://github.com/charmainethq/ADLC3_CA.git"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Deployment URL:* https://github.com/charmainethq/ADLC3_CA.git"
+                    }
+                  ]
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Go",
+                        "emoji": true
+                      },
+                      "url": "https://my-app.railway.app"
+                    },
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View on GitHub",
+                        "emoji": true
+                      },
+                      "url": "https://github.com/johndoe/my-repo"
+                    }
+                  ]
+                }
+              ]
+            }
+
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
