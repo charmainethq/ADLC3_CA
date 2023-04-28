@@ -31,9 +31,12 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
         with:
-          message: |
-            Name: Charmaine Tan Hui Qi
-            Matriculation number: E1112932
-            Email: e1112932@u.nus.edu
-            Repository: ${{ github.event.repository.html_url }}
-            Deployment URL: ${{ env.RAILWAY_URL }}
+          status: ${{ job.status }}
+          text: |
+            *Name:* Charmaine Tan Hui Qi
+            *Matriculation Number:* E1112932
+            *Email:* e1112932@u.nus.edu
+            *Repository:* ${{ github.repository }}
+            *Deployment URL:* ${{ env.RAILWAY_URL }}
+          fields: repo,message,author,action,commit,url
+
