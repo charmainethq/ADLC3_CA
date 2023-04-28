@@ -27,72 +27,16 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: general
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_MESSAGE: |
             {
               "blocks": [
                 {
-                  "type": "header",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "Application Provisioned",
-                    "emoji": true
-                  }
-                },
-                {
-                  "type": "divider"
-                },
-                {
                   "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Name:* Charmaine Tan"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Matriculation Number:* E1112932"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Email:* e1112932@u.nus.edu"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Repository:* ${{ github.repository }}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Deployment URL:* ${{ secrets.RAILWAY_URL }}"
-                    }
-                  ]
-                },
-                {
-                  "type": "actions",
-                  "elements": [
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "Go",
-                        "emoji": true
-                      },
-                      "url": "https://my-app.railway.app"
-                    },
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "View on GitHub",
-                        "emoji": true
-                      },
-                      "url": "${{ secrets.RAILWAY_URL }}"
-                    }
-                  ]
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Hello, world!*"
+                  }
                 }
               ]
             }
-          SLACK_TITLE: DIPSA 56 CI/CD Submission
-          SLACK_USERNAME: rtCamp
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
