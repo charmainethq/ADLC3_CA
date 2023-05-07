@@ -49,7 +49,7 @@ jobs:
                   "fields": [
                     {
                       "type": "mrkdwn",
-                      "text": "*Name:* Charmaine Tan"
+                      "text": "*Name:* Charmaine Tan Hui Qi"
                     },
                     {
                       "type": "mrkdwn",
@@ -84,5 +84,5 @@ jobs:
               ]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_MINE}}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_SUBMISSION}}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
